@@ -1,28 +1,62 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.addGame {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .gameList {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .gameBox {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    background: #2f2f2f;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.gameBox:hover {
-
-    background: red;
+.gameInfo {
+    flex: 1;
 }
 
-.gameContent {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+.gameIndex {
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 .gameTitle {
-    background: white;
+    font-size: 18px;
+}
+
+.gameActions {
+    flex: 0;
+}
+
+.gameActions button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.gameActions button:first-child {
+    background-color: #2196f3;
+    color: white;
+}
+
+.gameActions button:last-child {
+    background-color: #f44336;
+    color: white;
 }

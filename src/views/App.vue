@@ -1,40 +1,25 @@
 <template>
   <div class="container">
-    <div class="gameList">
-      <div class="gameBox" v-for="(game, index) in data.games" @key="game + index">
-        <div class="gameContent">
-          <span class="gameTitle">{{game.name}}</span>
+    <button class="addGame" @click="this.$store.commit('openGameDirectory')">Add Game</button>
+    <div v-if="this.$store.state.data && this.$store.state.data.games.length > 0" :key="this.$store.state.data.games">
+      <div class="gameList"  v-for="(game, index) in this.$store.state.data.games" :key="index">
+        <div class="gameBox">
+          <div class="gameInfo">
+            <span class="gameIndex">{{index}}</span>
+            <span class="gameTitle">{{ game.title }}</span>
+          </div>
+          <div class="gameActions">
+            <button @click="invoke('execute_game', game.path)">Play</button>
+            <button>Delete</button>
+          </div>
         </div>
       </div>
     </div>
-    <button class="addGame">+</button>
   </div>
 </template>
 
 <script setup>
 import "../styles/gamelist.css";
-import {onBeforeMount, ref} from "vue";
-import {resolveResource} from '@tauri-apps/api/path';
-import {exists, readTextFile, writeFile, readDir, } from '@tauri-apps/api/fs';
-
-let data = ref(null);
-
-const getDirectories = async () =>
-    (await readDir(data.path, { withFileTypes: true }))
-        .map(dirent => dirent.name)
-
-const saveData = () =>
-{
-  writeFile("files/data.json", JSON.stringify(data), function writeJSON(err) {
-    if (err) return console.log(err);
-    console.log(JSON.stringify(data));
-    console.log('writing to ' + "files/data.json");
-  });
-}
-
-onBeforeMount(async () => {
-  const resourcePath = await resolveResource('files/data.json');
-  data = JSON.parse(await readTextFile(resourcePath));
-})
+import { invoke } from '@tauri-apps/api/core';
 
 </script>
