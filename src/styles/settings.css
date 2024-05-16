@@ -1,0 +1,55 @@
+.settingsContainer {
+    width: 300px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.settingsBox {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.settingsBox:hover {
+    box-shadow: 0 2px 10px white;
+}
+
+.settingsTitle, .settingsExe {
+    margin-bottom: 15px;
+}
+
+.settingsTitle span, .settingsExe span {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+input[type="text"] {
+    width: calc(100% - 40px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+input[type="text"]:disabled {
+    background-color: #f5f5f5;
+}
+
+#changeExe {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 15px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#changeExe {
+    background-color: #45a049;
+}

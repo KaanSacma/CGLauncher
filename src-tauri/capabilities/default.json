@@ -6,7 +6,6 @@
     "main"
   ],
   "permissions": [
-    "path:default",
     "event:default",
     "window:default",
     "app:default",
@@ -15,12 +14,37 @@
     "menu:default",
     "tray:default",
     "shell:allow-open",
-    "dialog:allow-open",
-    "fs:default",
-    "fs:allow-write-file",
+    {
+      "identifier": "dialog:allow-open",
+      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+    },
+    {
+      "identifier": "path:default",
+      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+    },
+    {
+      "identifier": "path:allow-resolve-directory",
+      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+    },
+    {
+      "identifier": "path:allow-resolve",
+      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+    },
+    {
+      "identifier": "fs:default",
+      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+    },
+    {
+      "identifier": "fs:allow-write-file",
+      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+    },
+    {
+      "identifier": "fs:allow-read-text-file",
+      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+    },
     {
       "identifier": "fs:scope",
-      "allow": [{ "path": "$APPDATA" }, { "path": "$APPDATA/**" }, { "path": "$RESOURCE/**" }]
+      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
     }
   ]
 }

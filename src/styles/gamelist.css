@@ -1,3 +1,7 @@
+body {
+    background: #2f2f2f
+}
+
 .container {
     width: 80%;
     margin: 0 auto;
@@ -6,14 +10,24 @@
 .addGame {
     background-color: #4caf50;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 100px;
+    margin: auto;
+}
+
+.addGame:hover {
+    box-shadow: 2px 2px 5px #4caf50;
 }
 
 .gameList {
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .gameBox {
@@ -24,10 +38,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: white;
+    width: 75%;
+}
+
+.gameBox:hover {
+    border: 1px solid #2f2f2f;
+    box-shadow: 0 2px 10px white;
 }
 
 .gameInfo {
-    flex: 1;
+    display: flex;
 }
 
 .gameIndex {
@@ -40,23 +61,44 @@
 }
 
 .gameActions {
-    flex: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .gameActions button {
+    width: 50px;
+    height: 50px;
     margin-left: 10px;
-    padding: 5px 10px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    padding: 0px;
+    font-size: 30px;
+    color: white;
 }
 
 .gameActions button:first-child {
     background-color: #2196f3;
-    color: white;
 }
+
+.gameActions button:first-child:hover {
+    box-shadow: 2px 2px 5px #2196f3;
+}
+
+.gameActions button:nth-child(2) {
+    background-color: gray;
+}
+
+.gameActions button:nth-child(2):hover {
+    box-shadow: 2px 2px 5px gray;
+}
+
 
 .gameActions button:last-child {
     background-color: #f44336;
-    color: white;
+}
+
+.gameActions button:last-child:hover {
+    box-shadow: 2px 2px 5px #f44336;
 }
