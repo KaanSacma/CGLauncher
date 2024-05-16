@@ -1,7 +1,7 @@
 
 # CG Launcher
 
-A local __web-based__ application made with __Tauri v2__ + __Vue__ (JavaScript).\
+A local [__web-based__](https://en.wikipedia.org/wiki/Web_application) application made with [__Tauri v2__](https://v2.tauri.app/fr/) + [__Vue__](https://vuejs.org/) (JavaScript).\
 The application's goal is to have a list of your own game and play it.
 
 ## Author
@@ -21,7 +21,7 @@ The application's goal is to have a list of your own game and play it.
 ## Installation & Launch
 
 [__Download__](https://github.com/KaanSacma/CGLauncher/releases/tag/Latest) the lastest release and Install it.\
-To __launch__ the application please start as __admin__ unless it will not save your game list! (It's a __web-based__ app that's why)
+To __launch__ the application please start as __admin__ unless it will not save your game list! (It's a [__web-based__](https://en.wikipedia.org/wiki/Web_application) app that's why)
 
 ## Future Plan
 
