@@ -1,30 +1,40 @@
 <template>
-  <div class="container">
-    <button class="addGame" @click="store.commit('openGameDirectory')">Add Game</button>
-    <div v-if="store.state.data && store.state.data.games.length > 0" :key="store.state.data.games">
-      <div class="gameList"  v-for="(game, index) in store.state.data.games" :key="index">
-        <div class="gameBox">
-          <div class="gameInfo">
-            <span class="gameIndex">{{index}}</span>
-            <span class="gameTitle">{{ game.title }}</span>
-          </div>
-          <div class="gameActions">
-            <button @click="invoke('execute_game', {path: game.path})">▶</button>
-            <button @click="store.commit('openSettings', index)">⚙️</button>
-            <button @click="store.commit('deleteGameData', index)">╳</button>
-          </div>
+  <Settings v-if="store.state.settingsCanRender" :pos="settingsIndex"/>
+    <div v-if="!store.state.settingsCanRender" class="top-bar">
+      <input type="text" placeholder="Search..." class="search-bar" v-model="searchInput"/>
+      <button class="add-game-btn" @click="store.commit('addGameExecutable')">Add Game</button>
+    </div>
+    <div v-if="!store.state.settingsCanRender" class="card-container">
+      <div class="card" v-for="(game, index) in searchItems()" :style="cssProps(game.cardImg)" :key="index">
+        <div class="card-content">
+          <button class="play-btn" @click="invoke('execute_game', {path: game.path})">▶</button>
+          <div class="title">{{ game.title }}</div>
+          <button class="dots-btn" @click="() => {settingsIndex = index; store.state.settingsCanRender = true;}">⋮</button>
         </div>
-        <Settings :pos="index" v-if="store.state.settingsCanRender[index] === true"/>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>
 import "../styles/gamelist.css";
 import {invoke} from '@tauri-apps/api/core';
 import Settings from "./Settings.vue";
-import { inject } from 'vue';
+import {inject, ref} from 'vue';
 
 const store = inject('store');
+const settingsIndex = ref(0);
+const searchInput = ref("");
+
+function searchItems() {
+  if (searchInput.value === '') return store.state.data.games;
+  const lowerCaseQuery = searchInput.value.toLowerCase();
+  return store.state.data.games.filter(item => item.title.toLowerCase().includes(lowerCaseQuery));
+}
+
+const cssProps = (value) => {
+  return {
+    backgroundImage: `url(${value})`,
+  }
+}
+
 </script>

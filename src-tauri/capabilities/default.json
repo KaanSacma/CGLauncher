@@ -7,44 +7,50 @@
   ],
   "permissions": [
     "event:default",
-    "window:default",
     "app:default",
-    "image:default",
     "resources:default",
     "menu:default",
     "tray:default",
     "shell:allow-open",
     {
+      "identifier": "window:default",
+      "allow": [{"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}, {"path": "$RESOURCE/files/cardImg/*"}, {"path": "$RESOURCE/files/cardImg/**"}]
+    },
+    {
+      "identifier": "image:default",
+      "allow": [{"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}, {"path": "$RESOURCE/files/cardImg/*"}, {"path": "$RESOURCE/files/cardImg/**"}]
+    },
+    {
       "identifier": "dialog:allow-open",
-      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+      "allow": [{"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}, {"path": "$RESOURCE/files/cardImg/*"}, {"path": "$RESOURCE/files/cardImg/**"}]
     },
     {
       "identifier": "path:default",
-      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+      "allow": [{"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}, {"path": "$RESOURCE/files/cardImg/*"}, {"path": "$RESOURCE/files/cardImg/**"}]
     },
     {
       "identifier": "path:allow-resolve-directory",
-      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+      "allow": [{"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}, {"path": "$RESOURCE/files/cardImg/*"}, {"path": "$RESOURCE/files/cardImg/**"}]
     },
     {
       "identifier": "path:allow-resolve",
-      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+      "allow": [{"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}, {"path": "$RESOURCE/files/cardImg/*"}, {"path": "$RESOURCE/files/cardImg/**"}]
     },
     {
       "identifier": "fs:default",
-      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+      "allow": [{"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}, {"path": "$RESOURCE/files/cardImg/*"}, {"path": "$RESOURCE/files/cardImg/**"}]
     },
     {
       "identifier": "fs:allow-write-file",
-      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+      "allow": [{"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}, {"path": "$RESOURCE/files/cardImg/*"}, {"path": "$RESOURCE/files/cardImg/**"}]
     },
     {
       "identifier": "fs:allow-read-text-file",
-      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+      "allow": [{"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}, {"path": "$RESOURCE/files/cardImg/*"}, {"path": "$RESOURCE/files/cardImg/**"}]
     },
     {
       "identifier": "fs:scope",
-      "allow": [{"path": "$APP"}, {"path": "$APP/*"}, {"path": "$APP/**"}, {"path": "$APP/files/*"}, {"path": "$APP/files/**"}, {"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}]
+      "allow": [{"path": "$RESOURCE"}, {"path": "$RESOURCE/*"}, {"path": "$RESOURCE/**"}, {"path": "$RESOURCE/files/*"}, {"path": "$RESOURCE/files/**"}, {"path": "$RESOURCE/files/cardImg/*"}, {"path": "$RESOURCE/files/cardImg/**"}]
     }
   ]
 }

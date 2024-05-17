@@ -2,9 +2,8 @@ import { createApp } from "vue";
 import "./styles/styles.css";
 import App from "./views/App.vue";
 import { createStore } from 'vuex'
-import {resolveResource} from "@tauri-apps/api/path";
-import {readTextFile, writeFile} from "@tauri-apps/plugin-fs";
 import {open} from "@tauri-apps/plugin-dialog";
+import {invoke} from '@tauri-apps/api/core';
 
 const store = createStore({
     state () {
@@ -12,55 +11,37 @@ const store = createStore({
             data: {
                 "games": []
             },
-            settingsCanRender: []
+            settingsCanRender: false
         }
     },
     mutations: {
-        async readData (state)
+        readData (state)
         {
-            const resourcePath = await resolveResource('files/data.json');
-            const text = await readTextFile(resourcePath);
-            state.data = JSON.parse(text);
-
-            if (state.data.games.length > 0) {
-                for (let i = 0; i < state.data.games.length; i++) {
-                    state.settingsCanRender.push(false);
-                }
-            }
+            invoke('read_data').then(text => {
+                state.data = JSON.parse(text);
+            }).catch(e => console.error(e));
         },
         async deleteGameData (state, index)
         {
           state.data.games.splice(index, 1);
-          state.settingsCanRender.splice(index, 1);
-          const resourcePath = await resolveResource('files/data.json');
-          const text = JSON.stringify(state.data, null, 2);
-          const encoder = new TextEncoder();
-
-          await writeFile(resourcePath, encoder.encode(text), function writeJSON(err) {
-              if (err) return console.log(err);
-              console.log(JSON.stringify(state.data));
-              console.log('writing to ' + "files/data.json");
-          });
+          await invoke('write_data', {data: JSON.stringify(state.data, null, 2)});
         },
-        async openGameDirectory (state) {
+        async addGameExecutable (state) {
             const gameLauncher = await open({
                 filters: [{ name: 'Game Executable', extensions: ['exe'] }],
                 multiple: false,
                 directory: false,
             });
 
-            if (gameLauncher) {
-                state.data.games.push({"title": gameLauncher.name.replace(".exe", ""), "path": gameLauncher.path});
-                state.settingsCanRender.push(false);
-                const resourcePath = await resolveResource('files/data.json');
-                const text = JSON.stringify(state.data, null, 2);
-                const encoder = new TextEncoder();
+            console.log("gameLauncher", gameLauncher);
 
-                await writeFile(resourcePath, encoder.encode(text), function writeJSON(err) {
-                    if (err) return console.log(err);
-                    console.log(JSON.stringify(state.data));
-                    console.log('writing to ' + "files/data.json");
+            if (gameLauncher && gameLauncher.name !== undefined && gameLauncher.name.length > 0 && gameLauncher.path !== undefined && gameLauncher.path.length > 0) {
+                state.data.games.push({
+                    "title": gameLauncher.name.replace(".exe", ""),
+                    "path": gameLauncher.path,
+                    "cardImg": 'CG-Game-Card.png'
                 });
+                await invoke('write_data', {data: JSON.stringify(state.data, null, 2)});
             }
         },
         async changeGameDirectory (state, index) {
@@ -71,22 +52,15 @@ const store = createStore({
                 defaultPath: state.data.games[index].path
             });
 
-            if (gameLauncher) {
+            if (gameLauncher && gameLauncher.path !== undefined && gameLauncher.path.length > 0) {
                 state.data.games[index].path = gameLauncher.path;
+                await invoke('write_data', {data: JSON.stringify(state.data, null, 2)});
             }
         },
         async openSettings(state, index) {
             state.settingsCanRender[index] = !state.settingsCanRender[index];
             if (!state.settingsCanRender[index]) {
-                const resourcePath = await resolveResource('files/data.json');
-                const text = JSON.stringify(state.data, null, 2);
-                const encoder = new TextEncoder();
-
-                await writeFile(resourcePath, encoder.encode(text), function writeJSON(err) {
-                    if (err) return console.log(err);
-                    console.log(JSON.stringify(state.data));
-                    console.log('writing to ' + "files/data.json");
-                });
+                await invoke('write_data', {data: JSON.stringify(state.data, null, 2)});
             }
         }
     }
@@ -94,11 +68,6 @@ const store = createStore({
 
 const app = createApp(App);
 
-async function init ()
-{
-    await store.commit("readData");
-}
-
 app.provide('store', store);
-init();
+store.commit("readData");
 app.mount("#app");
